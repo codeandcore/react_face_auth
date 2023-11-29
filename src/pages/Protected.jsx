@@ -39,7 +39,7 @@ function Protected() {
 
 
   return (
-    <div className="bg-white pt-40 md:pt-60">
+    <div className="bg-white pt-20 md:pt-20">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-12">
           You have successfully logged in!

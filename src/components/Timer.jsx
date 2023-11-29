@@ -2,11 +2,20 @@ import React, { useEffect, useState } from "react";
 
 const TimeApp = () => {
     const [recordings, setRecordings] = useState([]);
+    const [account, setAccount] = useState(null);
+
+   
 
     useEffect(() => {
+
+        const { account } = JSON.parse(localStorage.getItem("faceAuth"));
+        setAccount(account);
+
         // Load recordings from localStorage on component mount
-        const storedRecordings = JSON.parse(localStorage.getItem('recordings')) || [];
+        const storedRecordings = JSON.parse(localStorage.getItem(`recordings_${account.picture}`)) || [];
         setRecordings(storedRecordings);
+
+        
     }, []);
 
     const startRecording = () => {
@@ -27,7 +36,7 @@ const TimeApp = () => {
         setRecordings(updatedRecordings);
 
         // Save recordings to localStorage
-        localStorage.setItem('recordings', JSON.stringify(updatedRecordings));
+        localStorage.setItem(`recordings_${account.picture}`, JSON.stringify(updatedRecordings));
     };
 
     const calculateDuration = (start, end) => {
@@ -45,27 +54,28 @@ const TimeApp = () => {
             <button onClick={startRecording} className="cursor-pointer py-3 px-6 rounded-full bg-gradient-to-r from-red-400 to-red-600 ml-5 text-white">Start Working</button>
             <button onClick={endRecording} className="cursor-pointer py-3 px-6 rounded-full bg-gradient-to-r from-red-400 to-red-600 ml-5 text-white">Stop Working</button>
           </div>
-    
-          <table>
-            <thead>
-              <tr>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Duration</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recordings.map((record, index) => (
-                <tr key={index}>
-                  <td>{record.startTime.toLocaleString()}</td>
-                  <td>{record.endTime ? record.endTime.toLocaleString() : 'Recording...'}</td>
-                  <td>
-                    {record.duration || 'Recording...'}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 mb-20">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" className="px-6 py-3">Start Time</th>
+                        <th scope="col" className="px-6 py-3">End Time</th>
+                        <th scope="col" className="px-6 py-3">Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {recordings.map((record, index) => (
+                        <tr key={index} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <td className="px-6 py-4">{record.startTime.toLocaleString()}</td>
+                            <td className="px-6 py-4">{record.endTime ? record.endTime.toLocaleString() : 'Working...'}</td>
+                            <td className="px-6 py-4">
+                                {record.duration || 'Working...'}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+          </div>  
         </div>
     );
 

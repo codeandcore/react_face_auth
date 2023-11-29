@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Quotes from "../components/Quotes";
 
 function Home() {
   return (
@@ -10,15 +11,9 @@ function Home() {
             Welcome To
           </h1>
           <h1 className="block text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-indigo-900">
-            React Face Auth
+            Code and Core
           </h1>
-          <p className="mt-8 text-md text-gray-600 max-w-3xl mx-4 md:mx-16 lg:mx-auto">
-            The Facial Recognition-Based Authentication Application is a
-            cutting-edge web application developed using React and face-api.js.
-            The main objective of the application is to offer a reliable and
-            efficient authentication system by analyzing and verifying the
-            user's facial features.
-          </p>
+          <Quotes />          
           <Link
             to={"/user-select"}
             className="flex gap-2 mt-12 w-fit mx-auto cursor-pointer z-10 py-3 px-6 rounded-full bg-gradient-to-r from-indigo-300 to-indigo-500"
@@ -42,7 +37,7 @@ function Home() {
                 d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
               />
             </svg>
-            <span className="text-white">Log In</span>
+            <span className="text-white">Log In with Face Id</span>
           </Link>
         </div>
       </div>

@@ -14,11 +14,11 @@ const accounts = [
     fullName: "Vijay Solanki",
     picture: "43332f46-89a4-435c-880e-4d72bb51149a/1.jpg",
   },
-  // {
-  //   id: "b8476d8d-bd7e-405f-aa66-9a22a9727930",
-  //   fullName: "Amelia Miller",
-  //   picture: "/b8476d8d-bd7e-405f-aa66-9a22a9727930/1.jpg",
-  // },
+  {
+    id: "b8476d8d-bd7e-405f-aa66-9a22a9727930",
+    fullName: "Mayur Soni",
+    picture: "/b8476d8d-bd7e-405f-aa66-9a22a9727930/1.jpg",
+  },
   // {
   //   id: "88421e2c-ca7a-4332-815f-6e12824e2d05",
   //   fullName: "Sophia Smith",
@@ -53,7 +53,7 @@ function UserSelect() {
 
   return (
     <div className="h-full flex flex-col items-center justify-center gap-[24px] w-full max-w-[720px] mx-auto">
-      <h1 className="text-2xl font-semibold">Select a Dummy User to Log In</h1>
+      <h1 className="text-2xl font-semibold">Select a Your Name to Log In</h1>
       <div className="w-full p-4 text-right">
         <div className="mx-auto w-full max-w-md">
           <RadioGroup value={selected} onChange={setSelected}>
@@ -87,7 +87,7 @@ function UserSelect() {
               )}
             </div>
           </RadioGroup>
-          {!customUser && (
+          {/* {!customUser && (
             <div className="flex flex-col items-center justify-center w-full mt-3">
               <label
                 htmlFor="dropzone-file"
@@ -157,7 +157,7 @@ function UserSelect() {
                 <p className="text-red-500 text-xs mt-2">{errorMessage}</p>
               )}
             </div>
-          )}
+          )} */}
           <Link
             to="/login"
             state={{ account: selected }}

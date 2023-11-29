@@ -161,7 +161,7 @@ function UserSelect() {
           <Link
             to="/login"
             state={{ account: selected }}
-            className="mt-4 inline-flex items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600"
+            className="mt-4 inline-flex items-center rounded-md bg-gradient-to-r from-rose-400 to-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600"
           >
             Continue
             <svg

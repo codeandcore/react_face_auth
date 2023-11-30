@@ -185,22 +185,22 @@ function Login() {
           <span className="block">
             You're Attempting to Log In With Your Face.
           </span>
-          <span className="block text-indigo-600 mt-2">Loading Models...</span>
+          <span className="block text-red-600 mt-2">Loading Models...</span>
         </h2>
       )}
       {!localUserStream && modelsLoaded && (
         <h2 className="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          <span className="block text-indigo-600 mt-2">
+          <span className="block text-red-600 mt-2">
             Please Recognize Your Face to Completely Log In.
           </span>
         </h2>
       )}
       {localUserStream && loginResult === "SUCCESS" && (
         <h2 className="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          <span className="block text-indigo-600 mt-2">
+          <span className="block text-green-600 mt-2">
             We've successfully recognize your face!
           </span>
-          <span className="block text-indigo-600 mt-2">
+          <span className="block text-green-600 mt-2">
             Please stay {counter} more seconds...
           </span>
         </h2>
@@ -253,7 +253,7 @@ function Login() {
                 <button
                   onClick={getLocalUserVideo}
                   type="button"
-                  className="flex justify-center items-center w-full py-2.5 px-5 mr-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg border border-gray-200 inline-flex items-center"
+                  className="flex justify-center items-center w-full py-2.5 px-5 mr-2 text-sm font-medium text-white bg-gradient-to-r from-rose-400 to-red-500  rounded-lg border border-gray-200 inline-flex items-center"
                 >
                   Scan my face
                 </button>

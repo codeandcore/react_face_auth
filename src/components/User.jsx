@@ -7,7 +7,7 @@ function User({ user, type }) {
       value={user}
       className={({ checked }) =>
         `${
-          checked ? "bg-indigo-600 bg-opacity-75 text-white" : "bg-white"
+          checked ? "bg-gradient-to-r from-rose-400 to-red-500 bg-opacity-75 text-white" : "bg-white"
         } relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
       }
     >

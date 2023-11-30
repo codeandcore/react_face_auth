@@ -24,11 +24,11 @@ const accounts = [
   //   fullName: "Sophia Smith",
   //   picture: "/88421e2c-ca7a-4332-815f-6e12824e2d05/1.jpg",
   // },
-  // {
-  //   id: "0c2f5599-9296-4f94-97d5-e773043188ae",
-  //   fullName: "Emily Martinez",
-  //   picture: "/0c2f5599-9296-4f94-97d5-e773043188ae/1.jpg",
-  // },
+  {
+    id: "0c2f5599-9296-4f94-97d5-e773043188ae",
+    fullName: "Amit Kumar",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188ae/1.jpg",
+  },
 ];
 
 function UserSelect() {
@@ -161,7 +161,7 @@ function UserSelect() {
           <Link
             to="/login"
             state={{ account: selected }}
-            className="mt-4 inline-flex items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600"
+            className="mt-4 inline-flex items-center rounded-md bg-gradient-to-r from-rose-400 to-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600"
           >
             Continue
             <svg

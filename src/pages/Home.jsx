@@ -10,13 +10,13 @@ function Home() {
           <h1 className="block text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
             Welcome To
           </h1>
-          <h1 className="block text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-indigo-900">
+          <h1 className="block text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-rose-400 to-red-500">
             Code and Core
           </h1>
           <Quotes />          
           <Link
             to={"/user-select"}
-            className="flex gap-2 mt-12 w-fit mx-auto cursor-pointer z-10 py-3 px-6 rounded-full bg-gradient-to-r from-indigo-300 to-indigo-500"
+            className="flex gap-2 mt-12 w-fit mx-auto cursor-pointer z-10 py-3 px-6 rounded-full  bg-gradient-to-r from-rose-400 to-red-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

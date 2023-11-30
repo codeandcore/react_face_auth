@@ -17,7 +17,7 @@ function Protected() {
 
     const clearLocalStorage = () => {
       // localStorage.clear();
-      // localStorage.removeItem("faceAuth");
+      localStorage.removeItem("faceAuth");
       const message = 'Are you sure you want to leave? Changes you made may not be saved.';
       event.returnValue = message; // Standard for most browsers
       return message; // For some older browsers

@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div>
       <h6 className="text-sm text-center w-full">
-        © 2023 copyright all right reserved by &nbsp &nbsp
+        © 2023 copyright all right reserved by &nbsp;
         <a
           href="https://codeandcore.com/"
           target="_blank"

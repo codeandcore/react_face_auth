@@ -7,12 +7,37 @@ const TimeApp = () => {
   const [recordings, setRecordings] = useState([]);
   const [account, setAccount] = useState(null);
 
+  // check day time
+  const [timeOfDay, setTimeOfDay] = useState('');
+
   const storedAccount = JSON.parse(localStorage.getItem("faceAuth"));
   
   useEffect(() => {
     if (storedAccount) {
       setAccount(storedAccount.account);
     }
+
+
+    // check day time
+    const updateGreeting = () => {
+      const currentHour = new Date().getHours();
+
+      if (currentHour >= 6 && currentHour < 12) {
+        setTimeOfDay('morning');
+      } else if (currentHour >= 12 && currentHour < 18) {
+        setTimeOfDay('afternoon');
+      } else {
+        setTimeOfDay('evening');
+      }
+    };
+    // Update the greeting when the component mounts
+    updateGreeting();
+    // Update the greeting every minute to handle midnight transition
+    const intervalId = setInterval(updateGreeting, 60000);
+
+    // Clear the interval on component unmount
+    return () => clearInterval(intervalId);
+
     
   }, []);
 
@@ -42,7 +67,7 @@ const TimeApp = () => {
   // change time formate
   const formatDateTime = (timestamp) => {
     if (!timestamp || !timestamp.seconds) {
-      return "N/A";
+      return "Updating...";
     }
   
     const options = {
@@ -78,16 +103,21 @@ const TimeApp = () => {
       updatedRecordings[lastIndex].startTime,
       updatedRecordings[lastIndex].endTime
     );
-    
+      
+    updatedRecordings[lastIndex].formattedEndTime = formatDateTime(updatedRecordings[lastIndex].endTime);
+
     setRecordings(updatedRecordings);
     await saveRecordingsToFirebase(updatedRecordings);
+
+    // Fetch updated recordings after saving
+    fetchRecordings();
+
   };
   
   const saveRecordingsToFirebase = async (data) => {
     try {
       const userDocRef = doc(firestore, "users", storedAccount.account.id);
       await updateDoc(userDocRef, { data });
-
       console.log("Recordings saved successfully");
     } catch (error) {
       console.error("Error saving recordings:", error);
@@ -105,9 +135,15 @@ const TimeApp = () => {
       
   return (
     <div className="timer_wrapper">
-      <h3 className="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-12">
-        Start Clock
-      </h3>
+      <h2 className="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-5 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-800">Good {timeOfDay}!</h2>
+      <h5 className="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-2xl mb-12">
+          I hope you have a  
+          {timeOfDay === 'morning'
+          ? ' productive day.'
+          : timeOfDay === 'afternoon'
+          ? ' beautiful day.'
+          : ' wonderful day.'}
+      </h5>
       <div className="flex justify-center">
         <button
           onClick={startRecording}

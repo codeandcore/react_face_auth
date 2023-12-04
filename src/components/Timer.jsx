@@ -1,40 +1,64 @@
 import React, { useEffect, useState } from "react";
 import { firestore } from "../firebaseConfig";
 import { findAll } from "../components/TimerRes";
-import { collection, doc, setDoc,getDoc  } from "firebase/firestore"; 
+import { collection, doc, updateDoc , setDoc,getDoc  } from "firebase/firestore"; 
 
 const TimeApp = () => {
   const [recordings, setRecordings] = useState([]);
   const [account, setAccount] = useState(null);
 
+  const storedAccount = JSON.parse(localStorage.getItem("faceAuth"));
   
   useEffect(() => {
-    const storedAccount = JSON.parse(localStorage.getItem("faceAuth"));
-    // setAccount(storedAccount);
-
-    if (!storedAccount) {
-      return null;
+    if (storedAccount) {
+      setAccount(storedAccount.account);
     }
     
-    fetchRecordings();
+  }, []);
+
+  useEffect(() => {
+    if (account) {
+      fetchRecordings();
+    }
   }, [account]);
 
   const fetchRecordings = async () => {
     try {      
-      const citiesRef = collection(firestore, "users");
-      const docRef = doc(firestore, "users","374ed1e4-481b-4074-a26e-6137657c6e35");
-      const docSnap = await getDoc(docRef);
-      const get_data = docSnap.data();
-      // const snapshot = await firestore.collection("users").get();
-      // const data = snapshot.docs.map((doc) => doc.data());
-      setRecordings((prevArray) => [...prevArray, get_data]);
+      const userDocRef = doc(firestore, "users", storedAccount.account.id);
+      const docSnap = await getDoc(userDocRef);
+
+     if (docSnap.exists()) {
+        const userData = docSnap.data();
+        setRecordings(userData.data || []);
+      } else {
+        console.log("User not found");
+      }
       
     } catch (error) {
       console.error("Error fetching recordings:", error);
     }
   };
   
- 
+  // change time formate
+  const formatDateTime = (timestamp) => {
+    if (!timestamp || !timestamp.seconds) {
+      return "N/A";
+    }
+  
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true,
+    };
+  
+    const milliseconds = timestamp.seconds * 1000 + (timestamp.nanoseconds || 0) / 1e6;
+    return new Date(milliseconds).toLocaleString("en-US", options);
+  };
+
 
   const startRecording = async () => {
     const startTime = new Date();
@@ -48,7 +72,6 @@ const TimeApp = () => {
   const endRecording = async () => {
     const lastIndex = recordings.length - 1;
     const updatedRecordings = [...recordings];
-    console.log(updatedRecordings)
     updatedRecordings[lastIndex].endTime = new Date();
 
     updatedRecordings[lastIndex].duration = calculateDuration(
@@ -62,13 +85,12 @@ const TimeApp = () => {
   
   const saveRecordingsToFirebase = async (data) => {
     try {
-      // await firestore.collection("users").doc(account.id).collection("data") 
-      //.set({ data });
-      const citiesRef = collection(firestore, "users");      
-      await setDoc(doc(citiesRef, "374ed1e4-481b-4074-a26e-6137657c6e35"),{data});      
+      const userDocRef = doc(firestore, "users", storedAccount.account.id);
+      await updateDoc(userDocRef, { data });
+
       console.log("Recordings saved successfully");
     } catch (error) {
-      console.error("Error saving recordings:", error); 
+      console.error("Error saving recordings:", error);
     }
   };
 
@@ -80,7 +102,7 @@ const TimeApp = () => {
     return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
   };
   
-    
+      
   return (
     <div className="timer_wrapper">
       <h3 className="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-12">
@@ -122,12 +144,10 @@ const TimeApp = () => {
                 className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
               >
                 <td className="px-6 py-4">
-                  {record.startTime ? record.startTime.toLocaleString() : "N/A"}
+                  {formatDateTime(record.startTime)}
                 </td>
                 <td className="px-6 py-4">
-                  {record.endTime
-                    ? record.endTime.toLocaleString()
-                    : "Working..."}
+                  {formatDateTime(record.endTime) || "Working..."}
                 </td>
                 <td className="px-6 py-4">{record.duration || "Working..."}</td>
               </tr>

@@ -27,7 +27,7 @@ const TimeApp = () => {
       const get_data = docSnap.data();
       // const snapshot = await firestore.collection("users").get();
       // const data = snapshot.docs.map((doc) => doc.data());
-      setRecordings(prevArray => [...prevArray, get_data]);
+      setRecordings((prevArray) => [...prevArray, get_data]);
       
     } catch (error) {
       console.error("Error fetching recordings:", error);
@@ -55,19 +55,17 @@ const TimeApp = () => {
       updatedRecordings[lastIndex].startTime,
       updatedRecordings[lastIndex].endTime
     );
-
     
     setRecordings(updatedRecordings);
-
     await saveRecordingsToFirebase(updatedRecordings);
   };
-
+  
   const saveRecordingsToFirebase = async (data) => {
     try {
       // await firestore.collection("users").doc(account.id).collection("data") 
-      //   .set({ data });
+      //.set({ data });
       const citiesRef = collection(firestore, "users");      
-      await setDoc(doc(citiesRef, "374ed1e4-481b-4074-a26e-6137657c6e35"),{ data });      
+      await setDoc(doc(citiesRef, "374ed1e4-481b-4074-a26e-6137657c6e35"),{data});      
       console.log("Recordings saved successfully");
     } catch (error) {
       console.error("Error saving recordings:", error); 
@@ -82,8 +80,7 @@ const TimeApp = () => {
     return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
   };
   
-  console.log(recordings)
-
+    
   return (
     <div className="timer_wrapper">
       <h3 className="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-12">

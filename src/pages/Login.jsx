@@ -3,6 +3,7 @@ import * as faceapi from "face-api.js";
 import AuthIdle from "../assets/images/auth-idle.svg";
 import AuthFace from "../assets/images/auth-face.svg";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [tempAccount, setTempAccount] = useState("");
@@ -206,6 +207,7 @@ function Login() {
         </h2>
       )}
       {localUserStream && loginResult === "FAILED" && (
+
         <h2 className="text-center text-3xl font-extrabold tracking-tight text-rose-700 sm:text-4xl">
           <span className="block mt-[56px]">
             Upps! We did not recognize your face.
@@ -294,6 +296,14 @@ function Login() {
           </>
         )}
       </div>
+      {localUserStream && loginResult === "FAILED" && (
+        <Link
+        to={"/user-select"}
+        className="flex justify-center items-center w-full py-2.5 px-5 mr-2 text-sm font-medium text-white bg-gradient-to-r from-rose-400 to-red-500  rounded-lg border border-gray-200 inline-flex items-center"
+        >
+        Back to User
+        </Link>
+      )}
     </div>
   );
 }

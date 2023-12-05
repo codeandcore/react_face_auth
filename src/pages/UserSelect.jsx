@@ -19,16 +19,36 @@ const accounts = [
     fullName: "Mayur Soni",
     picture: "/b8476d8d-bd7e-405f-aa66-9a22a9727930/1.jpg",
   },
-  // {
-  //   id: "88421e2c-ca7a-4332-815f-6e12824e2d05",
-  //   fullName: "Sophia Smith",
-  //   picture: "/88421e2c-ca7a-4332-815f-6e12824e2d05/1.jpg",
-  // },
+  {
+    id: "88421e2c-ca7a-4332-815f-6e12824e2d05",
+    fullName: "Rozemina Jalali",
+    picture: "/88421e2c-ca7a-4332-815f-6e12824e2d05/1.jpg",
+  },
   {
     id: "0c2f5599-9296-4f94-97d5-e773043188ae",
     fullName: "Amit Kumar",
     picture: "/0c2f5599-9296-4f94-97d5-e773043188ae/1.jpg",
   },
+  {
+    id: "0c2f5599-9296-4f94-97d5-e773043188a1",
+    fullName: "Sagar Prajapati",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188a1/1.jpg",
+  },
+  {
+    id: "0c2f5599-9296-4f94-97d5-e773043188a2",
+    fullName: "Milan Parekh",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188a2/1.jpg",
+  },
+  {
+    id: "0c2f5599-9296-4f94-97d5-e773043188a3",
+    fullName: "Karan Rajput",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188a3/1.jpg",
+  },
+  {
+    id: "0c2f5599-9296-4f94-97d5-e773043188a4",
+    fullName: "Praful Paneri",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188a4/1.jpg",
+  }
 ];
 
 function UserSelect() {

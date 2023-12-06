@@ -14,7 +14,7 @@ function User({ user, type }) {
       {({ checked }) => (
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center">
-            <div className="text-sm">
+            <div className="text-md">
               <RadioGroup.Label
                 as="div"
                 className={`flex items-center gap-x-6 font-medium ${

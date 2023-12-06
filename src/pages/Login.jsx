@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as faceapi from "face-api.js";
-import AuthIdle from "../assets/images/auth-idle.svg";
+import AuthIdle from "../assets/images/auth-idle.svg"; 
 import AuthFace from "../assets/images/auth-face.svg";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";

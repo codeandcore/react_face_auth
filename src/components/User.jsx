@@ -14,7 +14,7 @@ function User({ user, type }) {
       {({ checked }) => (
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center">
-            <div className="text-md">
+            <div className="text-lg">
               <RadioGroup.Label
                 as="div"
                 className={`flex items-center gap-x-6 font-medium ${
@@ -22,7 +22,7 @@ function User({ user, type }) {
                 }`}
               >
                 <img
-                  className="object-cover h-10 w-10 rounded-full"
+                  className="object-cover h-16 w-16 rounded-full"
                   src={
                     type === "CUSTOM"
                       ? user.picture

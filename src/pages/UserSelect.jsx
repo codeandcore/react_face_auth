@@ -10,24 +10,25 @@ const accounts = [
     picture: "374ed1e4-481b-4074-a26e-6137657c6e35/1.jpg",
   },
   {
-    id: "43332f46-89a4-435c-880e-4d72bb51149a",
-    fullName: "Vijay Solanki",
-    picture: "43332f46-89a4-435c-880e-4d72bb51149a/1.jpg",
-  },
-  {
     id: "b8476d8d-bd7e-405f-aa66-9a22a9727930",
     fullName: "Mayur Soni",
     picture: "/b8476d8d-bd7e-405f-aa66-9a22a9727930/1.jpg",
+  },
+  {
+    id: "43332f46-89a4-435c-880e-4d72bb51149a",
+    fullName: "Vijay Solanki",
+    picture: "43332f46-89a4-435c-880e-4d72bb51149a/1.jpg",
   },
   {
     id: "88421e2c-ca7a-4332-815f-6e12824e2d05",
     fullName: "Rozemina Jalali",
     picture: "/88421e2c-ca7a-4332-815f-6e12824e2d05/1.jpg",
   },
+  
   {
-    id: "0c2f5599-9296-4f94-97d5-e773043188ae",
-    fullName: "Amit Kumar",
-    picture: "/0c2f5599-9296-4f94-97d5-e773043188ae/1.jpg",
+    id: "0c2f5599-9296-4f94-97d5-e773043188a2",
+    fullName: "Milan Parekh",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188a2/1.jpg",
   },
   {
     id: "0c2f5599-9296-4f94-97d5-e773043188a1",
@@ -35,9 +36,9 @@ const accounts = [
     picture: "/0c2f5599-9296-4f94-97d5-e773043188a1/1.jpg",
   },
   {
-    id: "0c2f5599-9296-4f94-97d5-e773043188a2",
-    fullName: "Milan Parekh",
-    picture: "/0c2f5599-9296-4f94-97d5-e773043188a2/1.jpg",
+    id: "0c2f5599-9296-4f94-97d5-e773043188ae",
+    fullName: "Amit Kumar",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188ae/1.jpg",
   },
   {
     id: "0c2f5599-9296-4f94-97d5-e773043188a3",
@@ -48,6 +49,26 @@ const accounts = [
     id: "0c2f5599-9296-4f94-97d5-e773043188a4",
     fullName: "Praful Paneri",
     picture: "/0c2f5599-9296-4f94-97d5-e773043188a4/1.jpg",
+  },
+  {
+    id: "0c2f5599-9296-4f94-97d5-e773043188a5",
+    fullName: "Avni Ashar",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188a5/1.jpg",
+  },
+  {
+    id: "0c2f5599-9296-4f94-97d5-e773043188a6",
+    fullName: "Manish Maheswari",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188a6/1.jpg",
+  },
+  {
+    id: "0c2f5599-9296-4f94-97d5-e773043188a7",
+    fullName: "Dhruv Kapadiya",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188a7/1.jpg",
+  },
+  {
+    id: "0c2f5599-9296-4f94-97d5-e773043188a8",
+    fullName: "Sandip Patel",
+    picture: "/0c2f5599-9296-4f94-97d5-e773043188a8/1.jpg",
   }
 ];
 
@@ -72,13 +93,13 @@ function UserSelect() {
   };
 
   return (
-    <div className="h-full flex flex-col items-center justify-center gap-[24px] w-full max-w-[720px] mx-auto">
-      <h1 className="text-2xl font-semibold">Select a Your Name to Log In</h1>
+    <div className="flex flex-col items-center justify-center gap-[24px] w-full max-w-[720px] mx-auto">
+      <h1 className="text-2xl font-semibold mt-5">Select a Your Name to Log In</h1>
       <div className="w-full p-4 text-right">
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full">
           <RadioGroup value={selected} onChange={setSelected}>
             <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
-            <div className="space-y-2">
+            <div className="space-y-2 flex flex-wrap user_list justify-between">
               {accounts.map((account) => (
                 <User key={account.id} user={account} />
               ))}
